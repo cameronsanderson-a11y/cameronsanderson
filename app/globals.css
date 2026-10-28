@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), "Iowan Old Style", Palatino, Georgia, serif;
+  --color-paper: #f3efe6;
+  --color-paper-2: #e6dfd2;
+  --color-ink: #1c1915;
+  --color-muted: #5c564c;
+  --color-line: #ddd6c8;
+  /* Clay from the beard. Rules and marks only, never small text on paper. */
+  --color-accent: #ba7a47;
+  /* Dark warm brown for fills and hovers. Paper text stays on this. */
+  --color-olive: #5c3a28;
+  --color-quiet: #c8c0b4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.dark-surface :focus-visible {
+  outline-color: var(--color-paper);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 80;
+  transform: translateY(-200%);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.65rem 0.9rem;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.dark-surface .kicker {
+  color: var(--color-quiet);
+}
+
+.marker {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 0 0.28em;
+  text-decoration: none;
+}
+
+.marker:hover,
+.marker:focus-visible {
+  background-size: 100% 0.28em;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.95rem 1.15rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--color-olive);
+}
+
+.dark-surface .button {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.dark-surface .button:hover {
+  background: var(--color-accent);
+}
+
+.button .arrow {
+  display: inline-block;
+}
+
+.editorial {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.editorial > :first-child {
+  margin-top: 0;
+}
+
+.editorial p {
+  margin: 1.2em 0;
+}
+
+.editorial h2 {
+  margin: 2.6em 0 0.45em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 460;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.editorial h3 {
+  margin: 2em 0 0.4em;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.editorial ul,
+.editorial ol {
+  margin: 1.2em 0;
+  padding-left: 1.2em;
+}
+
+.editorial ul {
+  list-style: disc;
+}
+
+.editorial ol {
+  list-style: decimal;
+}
+
+.editorial li + li {
+  margin-top: 0.4em;
+}
+
+.editorial li::marker {
+  color: var(--color-olive);
+}
+
+.editorial a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.editorial strong {
+  font-weight: 600;
+}
+
+.editorial hr {
+  margin: 2.75rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.editorial figure {
+  margin: 2.5rem 0;
+}
+
+.editorial .pullquote {
+  margin: 2.6rem 0;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.15rem;
+  font-size: clamp(1.6rem, 2.5vw, 2.15rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.editorial .pullquote p {
+  margin: 0;
+}
+
+.editorial-case {
+  counter-reset: section;
+}
+
+.editorial-case h2::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marker {
+    transition: background-size 180ms ease;
+  }
+
+  .button .arrow {
+    transition: transform 180ms ease;
+  }
+
+  .button:hover .arrow,
+  .button:focus-visible .arrow {
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
