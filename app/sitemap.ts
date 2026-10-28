@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { getArticles, getProjects } from "@/lib/content";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["/", "/work", "/writing", "/about", "/speaking", "/contact"].map((path, index) => ({
     url: new URL(path, site.url).toString(),

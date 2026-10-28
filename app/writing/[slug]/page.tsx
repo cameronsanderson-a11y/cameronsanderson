@@ -14,7 +14,10 @@ import { articleGraph, breadcrumbGraph, pageMeta } from "@/lib/seo";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return getArticles().map((article) => ({ slug: article.slug }));
+  const articles = getArticles();
+  // Static export requires at least one path. There are no published essays yet.
+  if (articles.length === 0) return [{ slug: "_" }];
+  return articles.map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
